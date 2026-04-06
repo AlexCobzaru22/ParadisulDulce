@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cofetăria Paradisul Dulce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fff8fb;
+      --card:#ffffff;
+      --text:#4b2d3c;
+      --muted:#7d6470;
+      --pink:#e98aa7;
+      --pink-dark:#c96f8f;
+      --rose:#f6c7d5;
+      --gold:#f5d7b8;
+      --shadow:0 18px 45px rgba(184, 111, 140, .16);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Poppins, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(233,138,167,.14), transparent 35%),
+        radial-gradient(circle at top right, rgba(245,215,184,.22), transparent 28%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1180px, calc(100% - 32px)); margin:0 auto}
+    .topbar{
+      background:rgba(255,255,255,.72);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(201,111,143,.10);
+      position:sticky; top:0; z-index:50;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:14px; min-width:0}
+    .brand img{
+      width:54px; height:54px; border-radius:16px; object-fit:cover; box-shadow:var(--shadow); background:#fff;
+    }
+    .brand strong{display:block; font-size:1rem; line-height:1.1}
+    .brand span{display:block; font-size:.82rem; color:var(--muted)}
+    .menu{display:flex; flex-wrap:wrap; gap:18px; font-size:.95rem; color:var(--muted)}
+    .menu a{padding:10px 0; border-bottom:2px solid transparent}
+    .menu a:hover{color:var(--text); border-color:var(--pink)}
+
+    .hero{padding:42px 0 18px}
+    .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 16px;
+      background:rgba(233,138,167,.12); color:var(--pink-dark); border-radius:999px; font-weight:600; font-size:.92rem;
+      border:1px solid rgba(233,138,167,.20);
+    }
+    h1{font-size:clamp(2.2rem, 4vw, 4.6rem); line-height:1; margin:18px 0 16px}
+    .lead{font-size:1.06rem; line-height:1.8; color:var(--muted); max-width:62ch}
+    .cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:26px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:14px 22px; border-radius:999px; font-weight:700; transition:.25s ease;
+      border:1px solid transparent;
+    }
+    .btn-primary{background:linear-gradient(135deg, var(--pink), var(--pink-dark)); color:#fff; box-shadow:0 12px 26px rgba(233,138,167,.32)}
+    .btn-secondary{background:#fff; color:var(--text); border-color:rgba(201,111,143,.15)}
+    .btn:hover{transform:translateY(-2px)}
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.85), #fff);
+      border-radius:32px; padding:24px; box-shadow:var(--shadow); border:1px solid rgba(201,111,143,.10);
+    }
+    .logo-wrap{
+      background:linear-gradient(180deg, #fff 0%, #fff7fa 100%);
+      border-radius:28px; padding:22px; text-align:center; position:relative; overflow:hidden;
+    }
+    .logo-wrap:before,.logo-wrap:after{
+      content:""; position:absolute; width:140px; height:140px; border-radius:50%; background:rgba(233,138,167,.12); filter:blur(14px);
+    }
+    .logo-wrap:before{top:-50px; left:-40px}
+    .logo-wrap:after{bottom:-60px; right:-30px}
+    .logo-wrap img{width:min(100%, 330px); height:auto; position:relative; z-index:1}
+    .mini-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:14px}
+    .mini{
+      background:rgba(255,255,255,.8); border:1px solid rgba(201,111,143,.10); border-radius:20px; padding:14px;
+    }
+    .mini b{display:block; margin-bottom:6px}
+    .mini span{color:var(--muted); font-size:.92rem}
+
+    section{padding:28px 0}
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:18px}
+    .section-title h2{margin:0; font-size:clamp(1.5rem, 2vw, 2.2rem)}
+    .section-title p{margin:0; color:var(--muted); max-width:56ch}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{
+      background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; border:1px solid rgba(201,111,143,.09);
+    }
+    .card h3{margin:0 0 10px; font-size:1.06rem}
+    .card p,.card li{color:var(--muted); line-height:1.75}
+    .icon{width:46px; height:46px; border-radius:14px; display:grid; place-items:center; background:rgba(233,138,167,.14); color:var(--pink-dark); margin-bottom:14px; font-size:1.2rem}
+
+    .about{display:grid; grid-template-columns:.95fr 1.05fr; gap:18px; align-items:stretch}
+    .story{display:grid; gap:14px}
+    .list{margin:0; padding-left:18px}
+    .split{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+
+    .products{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .product{background:linear-gradient(180deg, #fff, #fff9fc); border-radius:24px; padding:18px; border:1px solid rgba(201,111,143,.09); box-shadow:var(--shadow)}
+    .product .ph{height:150px; border-radius:18px; background:linear-gradient(135deg, rgba(233,138,167,.18), rgba(245,215,184,.55)); display:grid; place-items:center; color:var(--pink-dark); font-weight:700; margin-bottom:14px; text-align:center; padding:12px}
+
+    .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .placeholder{min-height:220px; border-radius:26px; border:2px dashed rgba(201,111,143,.25); background:rgba(255,255,255,.75); display:flex; align-items:center; justify-content:center; text-align:center; padding:18px; color:var(--muted)}
+
+    .contact{display:grid; grid-template-columns:.9fr 1.1fr; gap:18px}
+    .info-row{display:grid; gap:12px}
+    .info{
+      display:flex; gap:14px; padding:16px; border-radius:18px; background:#fff; border:1px solid rgba(201,111,143,.09)
+    }
+    .info .dot{width:42px; height:42px; border-radius:14px; background:rgba(233,138,167,.15); display:grid; place-items:center; color:var(--pink-dark)}
+    .map{
+      width:100%; height:100%; min-height:340px; border:0; border-radius:24px; box-shadow:var(--shadow); background:#fff
+    }
+    .socials{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .pill{padding:11px 16px; border-radius:999px; background:#fff; border:1px solid rgba(201,111,143,.12); color:var(--muted)}
+    footer{padding:26px 0 40px; color:var(--muted); text-align:center}
+
+    @media (max-width: 980px){
+      .hero-grid,.about,.contact,.grid-3,.products,.gallery-grid,.split{grid-template-columns:1fr}
+      .menu{display:none}
+      .hero{padding-top:24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#acasa">
+        <img src="paradisul-dulce.jpg" alt="Logo Cofetăria Paradisul Dulce">
+        <div>
+          <strong>Cofetăria Paradisul Dulce</strong>
+          <span>Gusturi fine, deserturi elegante</span>
+        </div>
+      </a>
+      <nav class="menu">
+        <a href="#despre">Despre noi</a>
+        <a href="#produse">Produse</a>
+        <a href="#servicii">Servicii</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#testimoniale">Testimoniale</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="acasa" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Since 2022 • Cofetărie artizanală în Târgoviște</div>
+        <h1>Deserturi care arată bine, gustă minunat și lasă o amintire dulce.</h1>
+        <p class="lead">Cofetăria "Paradisul Dulce" este locul ideal pentru a vă încânta papilele gustative cu preparate proaspete și gustoase pregătite chiar în laboratorul nostru.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="tel:0734374280">Comandă acum • 0734 374 280</a>
+          <a class="btn btn-secondary" href="#contact">Vezi contact</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="logo-wrap">
+          <img src="paradisul-dulce.jpg" alt="Logo Cofetăria Paradisul Dulce">
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><b>Program</b><span>Luni–Vineri: 09:00–17:00</span></div>
+          <div class="mini"><b>Telefon</b><span>0734 374 280</span></div>
+          <div class="mini"><b>Adresă</b><span>Bulevardul Unirii, Bloc 51, Scara E, Parter, Târgoviște</span></div>
+          <div class="mini"><b>Social</b><span>Facebook • Instagram • TikTok</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="despre">
+    <div class="container">
+      <div class="section-title">
+        <h2>Despre noi</h2>
+        <p>Un spațiu dedicat poveștii brandului, valorilor și modului în care lucrăm.</p>
+      </div>
+      <div class="about">
+        <div class="card story">
+          <div class="icon">♡</div>
+          <h3>O cofetărie cu stil, atenție la detalii și deserturi făcute cu grijă.</h3>
+          <p>Cofetăria Paradisul Dulce a fost creată pentru clienții care caută deserturi frumoase și gustoase, potrivite pentru aniversări, evenimente speciale sau momente de răsfăț. Designul paginii pune accent pe eleganță, vizibilitate bună și navigare simplă pe telefon și desktop.</p>
+          <ul class="list">
+            <li>Preparat proaspăt, prezentare elegantă.</li>
+            <li>Produse personalizate la comandă.</li>
+            <li>Accent pe calitate, aspect și experiență dulce.</li>
+          </ul>
+        </div>
+        <div class="grid-3">
+          <div class="card"><div class="icon">1</div><h3>Comenzi rapide</h3><p>Buton direct pentru apel telefonic și comandă imediată.</p></div>
+          <div class="card"><div class="icon">2</div><h3>Imagine de brand</h3><p>Logo-ul primește loc central pentru recunoaștere vizuală puternică.</p></div>
+          <div class="card"><div class="icon">3</div><h3>Flexibilitate</h3><p>Poți adăuga ulterior poze, prețuri și linkuri sociale reale.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="produse">
+    <div class="container">
+      <div class="section-title">
+        <h2>Produse și categorii</h2>
+        <p>Am lăsat structura completă, astfel încât să poți popula ușor fiecare rubrica în viitor.</p>
+      </div>
+      <div class="products">
+        <div class="product"><div class="ph">Spațiu pentru torturi</div><h3>Torturi personalizate</h3><p>Adaugă aici poze, denumiri și modele pentru torturi aniversare, corporate sau tematice.</p></div>
+        <div class="product"><div class="ph">Spațiu pentru prăjituri</div><h3>Prăjituri și mini-deserturi</h3><p>Poți include sortimente, gramaje și recomandări de servire.</p></div>
+        <div class="product"><div class="ph">Spațiu pentru candy bar</div><h3>Candy bar & evenimente</h3><p>Perfect pentru nunți, botezuri, majorate și evenimente private.</p></div>
+        <div class="product"><div class="ph">Spațiu pentru produse speciale</div><h3>Produse de sezon</h3><p>Crăciun, Paște, Valentine’s Day sau colecții speciale pe perioadă limitată.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicii">
+    <div class="container">
+      <div class="section-title">
+        <h2>Servicii</h2>
+        <p>Am inclus toate rubricile esențiale pentru o prezentare completă și serioasă.</p>
+      </div>
+      <div class="split">
+        <div class="card">
+          <h3>Ce poți oferi clienților</h3>
+          <ul class="list">
+            <li>Comenzi telefonice rapide.</li>
+            <li>Rezervări pentru evenimente.</li>
+            <li>Produse personalizate după preferințe.</li>
+            <li>Ridicare din locație.</li>
+            <li>Consultanță pentru alegerea desertului potrivit.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Butonuri sociale neconectate</h3>
+          <p>Am lăsat butoane pentru Facebook, Instagram și TikTok, fără link real, ca să le poți completa ulterior.</p>
+          <div class="socials">
+            <a class="pill" href="#">Facebook</a>
+            <a class="pill" href="#">Instagram</a>
+            <a class="pill" href="#">TikTok</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <div class="container">
+      <div class="section-title">
+        <h2>Galerie foto</h2>
+        <p>Am lăsat spații clare pentru pozele tale, ca pagina să poată fi actualizată ușor.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="placeholder">Încarcă aici fotografie produs 1</div>
+        <div class="placeholder">Încarcă aici fotografie produs 2</div>
+        <div class="placeholder">Încarcă aici fotografie produs 3</div>
+        <div class="placeholder">Încarcă aici fotografie produs 4</div>
+        <div class="placeholder">Încarcă aici fotografie produs 5</div>
+        <div class="placeholder">Încarcă aici fotografie produs 6</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimoniale">
+    <div class="container">
+      <div class="section-title">
+        <h2>Testimoniale</h2>
+        <p>Am inclus o zonă dedicată recenziilor, pe care o poți completa cu feedback real de la clienți.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>„A fost exact ce ne-am dorit.”</h3><p>Încarcă aici un testimonial de la un client mulțumit, cu nume și eveniment.</p></div>
+        <div class="card"><h3>„Foarte frumos, foarte bun.”</h3><p>Poți adăuga o recenzie scurtă despre gust, prezentare și livrare.</p></div>
+        <div class="card"><h3>„Recomand cu drag.”</h3><p>Secțiunea e gândită ca un slider sau carduri în viitor, dacă dorești.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Informațiile principale sunt deja puse, iar butonul de comandă sună direct la numărul tău.</p>
+      </div>
+      <div class="contact">
+        <div class="info-row">
+          <div class="info"><div class="dot">☎</div><div><b>Telefon</b><div>0734 374 280</div></div></div>
+          <div class="info"><div class="dot">⌂</div><div><b>Adresă</b><div>Bulevardul Unirii, Bloc 51, Scara E, Parter, Târgoviște, România</div></div></div>
+          <div class="info"><div class="dot">⏰</div><div><b>Program</b><div>Luni–Vineri: 09:00–17:00</div></div></div>
+          <div class="info"><div class="dot">✉</div><div><b>Email</b><div>Necompletat</div></div></div>
+        </div>
+        <iframe class="map" title="Hartă Cofetăria Paradisul Dulce" src="https://www.bing.com/maps?q=Bulevardul%20Unirii%2C%20Bloc%2051%2C%20Scara%20E%2C%20Parter%2C%20Targoviste%2C%20Romania&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 Cofetăria Paradisul Dulce. Pagina realizată în stil modern, cu spațiu pentru actualizări viitoare.
+    </div>
+  </footer>
+</body>
+</html>
