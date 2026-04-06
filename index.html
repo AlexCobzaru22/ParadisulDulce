@@ -1,4 +1,4 @@
-'''<!DOCTYPE html>
+ '''<!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
@@ -80,6 +80,11 @@
       background:linear-gradient(180deg, #fff 0%, #fff7fa 100%);
       border-radius:28px; padding:22px; text-align:center; position:relative; overflow:hidden;
     }
+    .logo-wrap:before,.logo-wrap:after{
+      content:""; position:absolute; width:140px; height:140px; border-radius:50%; background:rgba(233,138,167,.12); filter:blur(14px);
+    }
+    .logo-wrap:before{top:-50px; left:-40px}
+    .logo-wrap:after{bottom:-60px; right:-30px}
     .logo-wrap img{width:min(100%, 330px); height:auto; position:relative; z-index:1}
     .mini-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:14px}
     .mini{
@@ -215,7 +220,7 @@
         <div class="product"><div class="ph">Spațiu pentru torturi</div><h3>Torturi personalizate</h3><p>Adaugă aici poze, denumiri și modele pentru torturi aniversare, corporate sau tematice.</p></div>
         <div class="product"><div class="ph">Spațiu pentru prăjituri</div><h3>Prăjituri și mini-deserturi</h3><p>Poți include sortimente, gramaje și recomandări de servire.</p></div>
         <div class="product"><div class="ph">Spațiu pentru candy bar</div><h3>Candy bar & evenimente</h3><p>Perfect pentru nunți, botezuri, majorate și evenimente private.</p></div>
-        <div class="product"><div class="ph">Spațiu pentru produse speciale</div><h3>Produse de sezon</h3><p>Crăciun, Paște, Valentine’s Day sau colecții speciale pe perioadă limitată.</p></div>
+        <div class="product"><div class="ph">Spațiu pentru produse speciale</div><h3>Produse de sezon</h3><p>Crăciun, Paște, Valentine's Day sau colecții speciale pe perioadă limitată.</p></div>
       </div>
     </div>
   </section>
@@ -274,9 +279,9 @@
         <p>Am inclus o zonă dedicată recenziilor, pe care o poți completa cu feedback real de la clienți.</p>
       </div>
       <div class="grid-3">
-        <div class="card"><h3>„A fost exact ce ne-am dorit.”</h3><p>Încarcă aici un testimonial de la un client mulțumit, cu nume și eveniment.</p></div>
-        <div class="card"><h3>„Foarte frumos, foarte bun.”</h3><p>Poți adăuga o recenzie scurtă despre gust, prezentare și livrare.</p></div>
-        <div class="card"><h3>„Recomand cu drag.”</h3><p>Secțiunea e gândită ca un slider sau carduri în viitor, dacă dorești.</p></div>
+        <div class="card"><h3>„A fost exact ce ne-am dorit."</h3><p>Încarcă aici un testimonial de la un client mulțumit, cu nume și eveniment.</p></div>
+        <div class="card"><h3>"Foarte frumos, foarte bun."</h3><p>Poți adăuga o recenzie scurtă despre gust, prezentare și livrare.</p></div>
+        <div class="card"><h3>"Recomand cu drag."</h3><p>Secțiunea e gândită ca un slider sau carduri în viitor, dacă dorești.</p></div>
       </div>
     </div>
   </section>
@@ -306,3 +311,8 @@
   </footer>
 </body>
 </html>'''
+
+from pathlib import Path
+Path('output').mkdir(exist_ok=True)
+Path('output/index_complet.html').write_text(html_content, encoding='utf-8')
+print('Cod HTML complet salvat')
